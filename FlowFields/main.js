@@ -13,23 +13,35 @@ class Particle {
 		this.effect = effect;
 		this.x = Math.floor(Math.random() * this.effect.width);
 		this.y = Math.floor(Math.random() * this.effect.height);
-		this.speedX = 0.5;
-		this.speedY = 1;
+		this.speedX = Math.random() * 5 - 2.5;
+		this.speedY = Math.random() * 5 - 2.5;
+		this.history = [{x: this.x, y: this.y}];
 	}
 	draw(context){
-		context.fillRect(this.x, this.y, 20, 20);
+		context.fillRect(this.x, this.y, 5, 5);
+		context.beginPath();
+		context.moveTo(this.history[0].x, this.history[0].y);
+		for (let i = 0; i < this.history.length && i < 3; i++){
+			context.lineTo(this.history[i].x, this.history[i].y);
+		}
+		context.stroke();
 	}
 	update(){
-		this.x += this.speedX;
+		this.x += this.speedX + Math.random() * 3 - 1.5;
 		this.y += this.speedY;
-		if (this.x > this.effect.width)
-			this.x = 0;
-		if (this.y > this.effect.height)
-			this.y = 0;
-		if (this.x < 0)
-			this.x = this.effect.width;
-		if (this.y < 0)
-			this.y = this.effect.height;
+		this.history.push({x: this.x, y: this.y});
+		if (this.x > this.effect.width || this.x < 0)
+			this.speedX = this.speedX * -1;
+		if (this.y > this.effect.height || this.y < 0)
+			this.speedY = this.speedY * -1;
+		// if (this.x > this.effect.width)
+		// 	this.x = 0;
+		// if (this.y > this.effect.height)
+		// 	this.y = 0;
+		// if (this.x < 0)
+		// 	this.x = this.effect.width;
+		// if (this.y < 0)
+		// 	this.y = this.effect.height;
 	}
 }
 
@@ -64,6 +76,7 @@ console.log(effect);
 
 function animate()
 {
+	// ctx.clearRect(0, 0, canvas.width, canvas.height)
 	effect.render(ctx);
 	requestAnimationFrame(animate);
 }

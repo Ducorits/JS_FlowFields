@@ -17,7 +17,7 @@ class Particle {
 		this.speedY;
 		this.speedModifier = Math.floor(Math.random() * 3 + 1);
 		this.history = [{x: this.x, y: this.y}];
-		this.maxLength = 100;
+		this.maxLength = 200;
 		this.angle = 0;
 		this.newAngle = 0;
 		this.angleCorrector = 0.5;
@@ -101,7 +101,6 @@ class Particle {
 			this.history = [{x: this.x, y: this.y}];
 			this.timer = this.maxLength * 2;
 		}
-
 	}
 }
 
@@ -112,13 +111,13 @@ class Effect {
 		this.width = this.canvas.width;
 		this.height = this.canvas.height;
 		this.particles = [];
-		this.numberOfParticles = 500;
-		this.cellSize = 5;
+		this.numberOfParticles = 1000;
+		this.cellSize = 10;
 		this.rows;
 		this.cols;
 		this.flowField = [];
-		this.curve = 2;
-		this.zoom = 0.05;
+		this.curve = 4;
+		this.zoom = 0.03;
 		this.debug = false;
 		this.init();
 
@@ -142,7 +141,7 @@ class Effect {
 		gradient1.addColorStop(0.6, 'rgb(255,255,255)');
 		gradient1.addColorStop(0.8, 'rgb(0,0,255)');
 
-		this.context.fillStyle = 'black';
+		this.context.fillStyle = 'rgba(150,150,150,0.8)';
 		this.context.fillText('Duco', this.width * 0.5, this.height * 0.5, this.width * 0.8);
 	}
 	init(){

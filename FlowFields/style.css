@@ -2,9 +2,25 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	background: black;
 }
 
 canvas {
 	background: black;
 	position: absolute;
+	filter: blur(0px);
+	z-index: 0;
+}
+
+h1 {
+	position: absolute;
+	font-size: ;
+	/* font-size: 80%; */
+	z-index: 10;
+	color: white;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	text-align: center;
+	margin: auto;
+	top: 50%;
+	background: transparent;
 }
